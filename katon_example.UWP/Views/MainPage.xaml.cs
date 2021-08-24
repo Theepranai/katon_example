@@ -1,5 +1,4 @@
 ﻿using katon_example.UWP.ViewModels;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -11,7 +10,7 @@ namespace katon_example.UWP.Views
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public MainPageModel ViewModel  = new MainPageModel();
+        public MainPageModel ViewModel = new MainPageModel();
 
         public MainPage()
         {
@@ -19,9 +18,9 @@ namespace katon_example.UWP.Views
             ViewModel.LoadData();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            ViewModel.ClickItem(e.ClickedItem);
         }
     }
 }

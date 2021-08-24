@@ -1,15 +1,11 @@
 ﻿using katon_example.Core.Models;
 using katon_example.Core.Services;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace katon_example.UWP.ViewModels
 {
-    public class MainPageModel
+    public class MainPageModel : INotifyPropertyChanged
     {
         private UserServices _userServices;
 
@@ -18,7 +14,20 @@ namespace katon_example.UWP.ViewModels
             _userServices = new UserServices();
         }
 
-        public ObservableCollection<UserModelDTO> Source = new ObservableCollection<UserModelDTO>();
+        public List<UserModelDTO> Source = new List<UserModelDTO>();
+
+        private UserModelDTO _selectedItem;
+
+        public UserModelDTO SelectedItem
+        {
+            get => _selectedItem; set
+            {
+                _selectedItem = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedItem)));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public void LoadData()
         {
@@ -32,5 +41,10 @@ namespace katon_example.UWP.ViewModels
             }
         }
 
+        public void ClickItem(object item)
+        {
+            System.Diagnostics.Debug.WriteLine("Click on itemlist");
+            SelectedItem = (UserModelDTO)item;
+        }
     }
 }

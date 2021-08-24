@@ -63,9 +63,9 @@ namespace katon_example.Test.Services
         }
 
         [Theory]
-        [InlineData(1, "katonEdit","LastNameEdit")]
-        [InlineData(3, "katonEdit", "LastNameEdit",false)]
-        public void CanEditUser(int Id,string Name, string LastName,bool CheckTrue = true)
+        [InlineData(1, "katonEdit", "LastNameEdit")]
+        [InlineData(3, "katonEdit", "LastNameEdit", false)]
+        public void CanEditUser(int Id, string Name, string LastName, bool CheckTrue = true)
         {
             var user = new UserModelDTO()
             {
@@ -78,9 +78,9 @@ namespace katon_example.Test.Services
 
             var result = _service.GetById(Id);
 
-            if(CheckTrue) Assert.True(result?.Name == Name && result?.LastName == LastName);
+            if (CheckTrue) Assert.True(result?.Name == Name && result?.LastName == LastName);
 
-            if(!CheckTrue) Assert.False(result?.Name == Name);
+            if (!CheckTrue) Assert.False(result?.Name == Name);
 
             var message = $"Id:{result?.Id} Name:{result?.Name} Last:{result?.LastName} result:{CheckTrue}";
 
@@ -89,10 +89,9 @@ namespace katon_example.Test.Services
 
         [Theory]
         [InlineData(1)]
-        [InlineData(3,false)]
+        [InlineData(3, false)]
         public void CanDeleteUser(int Id, bool CheckTrue = true)
         {
-
             var firstList = _service.GetAll().Count;
 
             _service.Delete(Id);
@@ -107,6 +106,5 @@ namespace katon_example.Test.Services
 
             _output.WriteLine(message);
         }
-
     }
 }

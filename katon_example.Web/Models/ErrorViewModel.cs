@@ -1,5 +1,3 @@
-using System;
-
 namespace katon_example.Web.Models
 {
     public class ErrorViewModel

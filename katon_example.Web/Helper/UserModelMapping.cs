@@ -17,7 +17,6 @@ namespace katon_example.Web.Helper
             };
         }
 
-
         public static UserModel ToEntity(this UserModelDTO userModel)
         {
             return new UserModel

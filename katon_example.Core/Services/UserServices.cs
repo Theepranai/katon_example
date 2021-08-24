@@ -18,14 +18,14 @@ namespace katon_example.Core.Services
                     LastName = "LastNameKaton",
                 });
 
-           for(var i = 2; i<=200; i++)
+            for (var i = 2; i <= 200; i++)
             {
                 rto.Add(
                 new UserModelDTO()
                 {
                     Id = i,
-                    Name = "fristKaton"+i,
-                    LastName = "LastNameKaton"+i,
+                    Name = "fristKaton" + i,
+                    LastName = "LastNameKaton" + i,
                 });
             }
         }
@@ -39,6 +39,7 @@ namespace katon_example.Core.Services
         {
             return rto.FirstOrDefault(x => x.Id == Id);
         }
+
         public List<UserModelDTO> Edit(UserModelDTO model)
         {
             var i = rto.FindIndex(c => c.Id == model.Id);
@@ -68,6 +69,5 @@ namespace katon_example.Core.Services
             rto.Remove(rto.FirstOrDefault(x => x.Id == id));
             return rto;
         }
-
     }
 }
