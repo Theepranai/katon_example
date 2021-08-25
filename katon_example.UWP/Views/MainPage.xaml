@@ -23,7 +23,7 @@
 
         <ListView Grid.Row="2" Margin="0,10,0,0"
                   IsItemClickEnabled="True"
-                  ItemsSource="{x:Bind ViewModel.Source}"
+                  ItemsSource="{x:Bind ViewModel.Source, Mode=OneWay}"
                   ItemClick="ListView_ItemClick">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:UserModelDTO">
@@ -37,7 +37,9 @@
                         <TextBlock Text="{x:Bind Id}" Grid.Column="0" />
                         <TextBlock Text="{x:Bind Name}" Grid.Column="1" />
                         <TextBlock Text="{x:Bind LastName}" Grid.Column="2" />
-                        <Button Grid.Column="3">Delete</Button>
+                        <Button Grid.Column="3" Click="Button_Click">
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;" />
+                        </Button>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -50,10 +52,14 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <TextBox Text="{x:Bind ViewModel.SelectedItem.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" />
             <TextBox Text="{x:Bind ViewModel.SelectedItem.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" />
-            <Button Grid.Column="2">Save</Button>
+            <Grid Grid.Column="2">
+                <Button Width="Auto" Click="Button_Click_Save">Save</Button>
+                <Button Width="Auto" Margin="55,0,0,0" Click="Button_Click_Clear">Clear</Button>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

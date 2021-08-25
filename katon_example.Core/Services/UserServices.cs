@@ -18,7 +18,7 @@ namespace katon_example.Core.Services
                     LastName = "LastNameKaton",
                 });
 
-            for (var i = 2; i <= 200; i++)
+            for (var i = 2; i <= 10; i++)
             {
                 rto.Add(
                 new UserModelDTO()
