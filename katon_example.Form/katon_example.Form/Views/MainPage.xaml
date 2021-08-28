@@ -7,9 +7,15 @@
 
     <StackLayout>
 
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Xamarin.Forms!" TextColor="White" FontSize="20" />
-        </Frame>
+            <Grid BackgroundColor="#2196F3" Padding="24" > 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0"  Text="Xamarin.Forms!" TextColor="White" FontSize="20" />
+            <Entry Grid.Column="1" Text="{Binding Searchword, Mode=TwoWay}" />
+            </Grid>
+           
 
         <CollectionView x:Name="ItemsListView"
                 ItemsSource="{Binding Items}"

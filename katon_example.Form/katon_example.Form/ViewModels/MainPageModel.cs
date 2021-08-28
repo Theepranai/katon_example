@@ -4,6 +4,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace katon_example.Form.ViewModels
@@ -13,6 +14,17 @@ namespace katon_example.Form.ViewModels
         private UserServices _userServices;
 
         private UserModelDTO _selectedItem = new UserModelDTO();
+
+        private string _searchWord;
+
+        public string Searchword {
+            get => _searchWord;
+            set {
+                _searchWord = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(_searchWord)));
+                OnSearch(value);
+            }
+        }
 
         public ObservableCollection<UserModelDTO> Items { get; }
         public Command LoadItemsCommand { get; }
@@ -76,6 +88,7 @@ namespace katon_example.Form.ViewModels
         {
             ExecuteLoadItemsCommand();
             SelectedItem = new UserModelDTO();
+            Searchword = "";
         }
 
         private void OnSaveItem(object obj)
@@ -107,6 +120,18 @@ namespace katon_example.Form.ViewModels
             if (item == null)
                 return;
             SelectedItem = item;
+        }
+
+        private void OnSearch(string word)
+        {
+            Items.Clear();
+
+            var data = _userServices.SearchWord(word);
+
+            foreach (var item in data)
+            {
+                Items.Add(item);
+            }
         }
     }
 }

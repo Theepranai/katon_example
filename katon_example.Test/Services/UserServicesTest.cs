@@ -106,5 +106,14 @@ namespace katon_example.Test.Services
 
             _output.WriteLine(message);
         }
+
+        [Fact]
+        public void CanSearchUser()
+        {
+            var result = _service.SearchWord("2");
+            Assert.True(result.Count > 0, result.Count.ToString());
+            _output.WriteLine(result.Count.ToString());
+        }
+
     }
 }

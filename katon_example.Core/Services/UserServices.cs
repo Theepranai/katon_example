@@ -69,5 +69,12 @@ namespace katon_example.Core.Services
             rto.Remove(rto.FirstOrDefault(x => x.Id == id));
             return rto;
         }
+
+        public List<UserModelDTO> SearchWord(string word) 
+        {
+            if (string.IsNullOrEmpty(word)) return rto;
+
+            return rto.Where(x => x.Name.Contains(word) || x.LastName.Contains(word)).ToList();
+        }
     }
 }
